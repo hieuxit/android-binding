@@ -47,3 +47,9 @@ ext.deps = [
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+[":binding-appcompat", ":binding-image", ":binding-view"].each { name ->
+    project(name) {
+        apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+    }
+}
