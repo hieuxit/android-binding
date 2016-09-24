@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file:///Data/work/workspace/fruitful/architec/android-binding/android-binding.iml" filepath="/Data/work/workspace/fruitful/architec/android-binding/android-binding.iml" />
+      <module fileurl="file:///Data/work/workspace/fruitful/architec/android-binding/binding-appcompat/binding-appcompat.iml" filepath="/Data/work/workspace/fruitful/architec/android-binding/binding-appcompat/binding-appcompat.iml" />
+      <module fileurl="file:///Data/work/workspace/fruitful/architec/android-binding/binding-image/binding-image.iml" filepath="/Data/work/workspace/fruitful/architec/android-binding/binding-image/binding-image.iml" />
+      <module fileurl="file:///Data/work/workspace/fruitful/architec/android-binding/binding-view/binding-view.iml" filepath="/Data/work/workspace/fruitful/architec/android-binding/binding-view/binding-view.iml" />
+      <module fileurl="file:///Data/work/workspace/fruitful/architec/android-binding/sample/sample.iml" filepath="/Data/work/workspace/fruitful/architec/android-binding/sample/sample.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,1 @@
+include ':sample', ':binding-image', ':binding-view', ':binding-appcompat'
