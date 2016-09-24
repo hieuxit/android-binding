@@ -32,12 +32,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    provided deps.support_annotations
-    provided 'com.squareup.picasso:picasso:[2.4.0, 2.5.2)'
-    provided 'com.github.bumptech.glide:glide:[3.5.0, 3.7.0)'
-    provided 'com.nostra13.universalimageloader:universal-image-loader:[1.9.2, 1.9.5)'
-    compile 'jp.wasabeef:glide-transformations:2.0.1'
+    compile deps.recyclerview_v7
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

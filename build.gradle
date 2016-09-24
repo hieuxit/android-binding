@@ -6,9 +6,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.0'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -19,7 +16,7 @@ allprojects {
 }
 
 ext {
-    minSdkVersion = 9
+    minSdkVersion = 14
     targetSdkVersion = 24
     compileSdkVersion = 24
     buildToolsVersion = '24.0.2'
@@ -32,6 +29,7 @@ ext {
 ext.deps = [
         // Android
         appcompat_v7       : "com.android.support:appcompat-v7:$supportLibVersion",
+        recyclerview_v7    : "com.android.support:recyclerview-v7:$supportLibVersion",
         support_annotations: "com.android.support:support-annotations:$supportLibVersion",
         support_design     : "com.android.support:design:$supportLibVersion",
 
@@ -48,7 +46,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-[":binding-appcompat", ":binding-image", ":binding-view"].each { name ->
+[":binding-recyclerview", ":binding-image", ":binding-view"].each { name ->
     project(name) {
         apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
     }

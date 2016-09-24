@@ -1,1 +1,1 @@
-include ':sample', ':binding-image', ':binding-view', ':binding-appcompat'
+include ':sample', ':binding-image', ':binding-view', ':binding-recyclerview', ':binding-appcompat'
