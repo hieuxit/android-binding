@@ -8,12 +8,12 @@
         <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.14.1" />
         <option name="modules">
           <set>
-            <option value="/Data/android/projects/android-binding" />
-            <option value="/Data/android/projects/android-binding/binding-appcompat" />
-            <option value="/Data/android/projects/android-binding/binding-image" />
-            <option value="/Data/android/projects/android-binding/binding-recyclerview" />
-            <option value="/Data/android/projects/android-binding/binding-view" />
-            <option value="/Data/android/projects/android-binding/sample" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/binding-appcompat" />
+            <option value="$PROJECT_DIR$/binding-image" />
+            <option value="$PROJECT_DIR$/binding-recyclerview" />
+            <option value="$PROJECT_DIR$/binding-view" />
+            <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

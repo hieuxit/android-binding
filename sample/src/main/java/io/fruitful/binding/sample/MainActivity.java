@@ -1,10 +1,9 @@
 package io.fruitful.binding.sample;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     static final String BASE = "http://i.imgur.com/";
     static final String EXT = ".jpg";
     static final String[] URLS = {
+            "https://edmullen.net/test/rc.jpg",
             BASE + "CqmBjo5" + EXT, BASE + "zkaAooq" + EXT, BASE + "0gqnEaY" + EXT,
             BASE + "9gbQ7YR" + EXT, BASE + "aFhEEby" + EXT, BASE + "0E2tgV7" + EXT,
             BASE + "P5JLfjk" + EXT, BASE + "nz67a4F" + EXT, BASE + "dFH34N5" + EXT,

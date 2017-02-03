@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,9 +16,7 @@
             type="List&lt;String&gt;" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,12 +28,15 @@
         tools:context="io.fruitful.binding.sample.MainActivity">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:imageUrl="@{images[0]}"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            app:firstUrl="@{images[1]}"
+            app:secondUrl="@{images[0]}"
             app:scaleType="@{ImageBinding.SCALE_CENTER_CROP}"
+            app:twomode="@{ImageBinding.TWOMODE_PRIORITY}"
+            app:placeHolder="@{null}"
+            app:transformType="@{ImageBinding.TRANSFORM_ROUNDED_ALL}"
+            app:cornerRadius="@{40}"
             android:background="#444"/>
     </LinearLayout>
 </layout>
-
-

@@ -10,6 +10,12 @@ import android.widget.ImageView;
 
 public abstract class ImageLoader {
 
+    /**
+     * @param <T> should be one of Integer for ResId, File for local file
+     */
+    abstract <T> void loadImageLocal(ImageView view, T image, @ImageBinding.TransformType int transformType,
+                                     @ImageBinding.ScaleType int scaleType, @Px int cornerRadius);
+
     abstract void loadImage(ImageView imageView, String firstUrl, String secondUrl,
                             @ImageBinding.TwoMode int twomode, Drawable placeHolder,
                             @ImageBinding.TransformType int transformType,

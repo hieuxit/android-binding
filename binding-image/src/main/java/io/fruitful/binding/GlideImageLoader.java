@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
+import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -25,6 +26,31 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  */
 
 public class GlideImageLoader extends ImageLoader {
+
+    @Override
+    <T> void loadImageLocal(ImageView imageView, T image, @ImageBinding.TransformType int transformType,
+                            @ImageBinding.ScaleType int scaleType, @Px int cornerRadius) {
+
+        Context context = imageView.getContext();
+        DrawableTypeRequest<T> request = Glide.with(context).load(image);
+        DrawableRequestBuilder builder;
+        if (transformType == ImageBinding.TRANSFORM_CIRCLE) {
+            builder = request.bitmapTransform(new CropCircleTransformation(context));
+        } else {
+            BitmapTransformation scaleTransformation = scaleType == ImageBinding.SCALE_CENTER_FIT ?
+                    new FitCenter(context) : new CenterCrop(context);
+            if (transformType == ImageBinding.TRANSFORM_NO_TRANSFORM) {
+                builder = request.bitmapTransform(scaleTransformation);
+            } else {
+                // Mapping transformType with RoundedCornerTransform
+                RoundedCornersTransformation.CornerType cornerType = mappingToGlideCornerType(transformType);
+                builder = request.bitmapTransform(
+                        new CenterCrop(context),
+                        new RoundedCornersTransformation(context, cornerRadius, 0, cornerType));
+            }
+        }
+        builder.dontAnimate().into(imageView);
+    }
 
     @Override
     void loadImage(ImageView imageView, String firstUrl, String secondUrl,
@@ -52,12 +78,11 @@ public class GlideImageLoader extends ImageLoader {
         }
         Context context = imageView.getContext();
         RequestListener<String, GlideDrawable> imageLoaderListener = null;
-        if (TextUtils.isEmpty(firstUrl) && TextUtils.isEmpty(secondUrl)) {
+        if (!TextUtils.isEmpty(firstUrl) && !TextUtils.isEmpty(secondUrl)) {
             imageLoaderListener = new TwoImagesLoaderListener(imageView, secondUrl, twomode, transformType, cornerRadius, scaleType);
         }
         DrawableRequestBuilder<String> builder = Glide.with(context)
                 .load(TextUtils.isEmpty(firstUrl) ? secondUrl : firstUrl)
-                .override(100, 100)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .listener(imageLoaderListener);
 
@@ -76,8 +101,8 @@ public class GlideImageLoader extends ImageLoader {
                 // Mapping transformType with RoundedCornerTransform
                 RoundedCornersTransformation.CornerType cornerType = mappingToGlideCornerType(transformType);
                 builder = builder.bitmapTransform(
-                        new RoundedCornersTransformation(context, cornerRadius, 0, cornerType),
-                        new CenterCrop(context));
+                        new CenterCrop(context),
+                        new RoundedCornersTransformation(context, cornerRadius, 0, cornerType));
             }
         }
         builder.dontAnimate().into(imageView);
@@ -157,10 +182,15 @@ public class GlideImageLoader extends ImageLoader {
         }
 
         @Override
-        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target,
+        public boolean onResourceReady(final GlideDrawable resource, String model, Target<GlideDrawable> target,
                                        boolean isFromMemoryCache, boolean isFirstResource) {
             if (twomode == ImageBinding.TWOMODE_BACKUP) return true;
-            loadImage(imageView, secondUrl, null, twomode, null, transformType, cornerRadius, scaleType);
+            imageView.post(new Runnable() {
+                @Override
+                public void run() {
+                    loadImage(imageView, secondUrl, null, twomode, resource, transformType, cornerRadius, scaleType);
+                }
+            });
             return false;
         }
     }
