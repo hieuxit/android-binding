@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.android.tools.build:gradle:2.3.1'
     }
 }
 
@@ -16,20 +16,21 @@ allprojects {
 }
 
 ext {
-    minSdkVersion = 14
-    targetSdkVersion = 24
-    compileSdkVersion = 24
-    buildToolsVersion = '24.0.2'
+    minSdkVersion = 16
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.2'
     sourceCompatibilityVersion = JavaVersion.VERSION_1_7
     targetCompatibilityVersion = JavaVersion.VERSION_1_7
 
-    supportLibVersion  = '24.2.1'
+    supportLibVersion  = '25.3.1'
 }
 
 ext.deps = [
         // Android
         appcompat_v7       : "com.android.support:appcompat-v7:$supportLibVersion",
         recyclerview_v7    : "com.android.support:recyclerview-v7:$supportLibVersion",
+        support_v4         : "com.android.support:support-v4:$supportLibVersion",
         support_annotations: "com.android.support:support-annotations:$supportLibVersion",
         support_design     : "com.android.support:design:$supportLibVersion",
 

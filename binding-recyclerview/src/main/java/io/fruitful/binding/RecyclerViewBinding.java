@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
  */
 public class RecyclerViewBinding {
 
-    @BindingAdapter({"bind:itemDecoration"})
+    @BindingAdapter("itemDecoration")
     public static void addItemDecoration(RecyclerView recyclerView, RecyclerView.ItemDecoration itemDecoration) {
         recyclerView.removeItemDecoration(itemDecoration);
         recyclerView.addItemDecoration(itemDecoration);

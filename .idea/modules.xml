@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/android-binding.iml" filepath="$PROJECT_DIR$/android-binding.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../../../android/projects/android-binding/android-binding.iml" filepath="$PROJECT_DIR$/../../../../../android/projects/android-binding/android-binding.iml" />
-      <module fileurl="file://$PROJECT_DIR$/binding-appcompat/binding-appcompat.iml" filepath="$PROJECT_DIR$/binding-appcompat/binding-appcompat.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../../../android/projects/android-binding/binding-appcompat/binding-appcompat.iml" filepath="$PROJECT_DIR$/../../../../../android/projects/android-binding/binding-appcompat/binding-appcompat.iml" />
       <module fileurl="file://$PROJECT_DIR$/binding-image/binding-image.iml" filepath="$PROJECT_DIR$/binding-image/binding-image.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../../../android/projects/android-binding/binding-image/binding-image.iml" filepath="$PROJECT_DIR$/../../../../../android/projects/android-binding/binding-image/binding-image.iml" />

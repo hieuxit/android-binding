@@ -34,6 +34,17 @@ public class GlideImageLoader extends ImageLoader {
         Context context = imageView.getContext();
         DrawableTypeRequest<T> request = Glide.with(context).load(image);
         DrawableRequestBuilder builder;
+
+        if (transformType == ImageBinding.TRANSFORM_NO_TRANSFORM) {
+            if (scaleType == ImageBinding.SCALE_AUTO) {
+                ViewGroup.LayoutParams lp = imageView.getLayoutParams();
+                scaleType = lp.width == ViewGroup.LayoutParams.WRAP_CONTENT || lp.height == ViewGroup.LayoutParams.WRAP_CONTENT ?
+                        ImageBinding.SCALE_CENTER_FIT : ImageBinding.SCALE_CENTER_CROP;
+            }
+        } else {
+            scaleType = ImageBinding.SCALE_CENTER_CROP;
+        }
+
         if (transformType == ImageBinding.TRANSFORM_CIRCLE) {
             builder = request.bitmapTransform(new CropCircleTransformation(context));
         } else {

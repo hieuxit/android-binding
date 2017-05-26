@@ -35,5 +35,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setImages(images);
+        binding.setVm(this);
+    }
+
+//    public File getImage() {
+//        return new File("/sdcard/test/abc.png");
+//    }
+
+    public int getImage() {
+        return R.mipmap.ic_launcher;
     }
 }

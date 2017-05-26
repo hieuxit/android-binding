@@ -18,6 +18,11 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
+
     dataBinding {
         enabled = true
     }

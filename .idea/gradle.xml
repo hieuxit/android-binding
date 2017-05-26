@@ -9,7 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/binding-appcompat" />
             <option value="$PROJECT_DIR$/binding-image" />
             <option value="$PROJECT_DIR$/binding-recyclerview" />
             <option value="$PROJECT_DIR$/binding-view" />

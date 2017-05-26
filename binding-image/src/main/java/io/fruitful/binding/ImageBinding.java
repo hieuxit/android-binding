@@ -66,95 +66,140 @@ public class ImageBinding {
 
     private static final ImageLoader imageLoader = ImageLoaderFactory.resolveImageLoader();
 
-    @BindingAdapter("bind:image")
+    @BindingAdapter("image")
     public static void loadImage(ImageView view, Bitmap bm) {
         view.setImageBitmap(bm);
     }
 
-    @BindingAdapter("bind:image")
-    public static void loadImage(ImageView view, Drawable image) {
-        view.setImageDrawable(image);
+    @BindingAdapter("image")
+    public static void loadImage(ImageView view, Drawable drawable) {
+        view.setImageDrawable(drawable);
     }
 
-    @BindingAdapter("bind:image")
+    @BindingAdapter("image")
     public static void loadImage(ImageView view, int imageId) {
         view.setImageResource(imageId);
     }
 
-    @BindingAdapter({"bind:firstUrl", "bind:secondUrl", "bind:twomode", "bind:placeHolder",
-            "bind:transformType", "bind:cornerRadius", "bind:scaleType"})
-    public static void loadImage(ImageView imageView, String firstUrl, String secondUrl,
-                                 @ImageBinding.TwoMode int twomode, Drawable placeHolder,
-                                 @ImageBinding.TransformType int transformType,
-                                 @Px int cornerRadius, @ImageBinding.ScaleType int scaleType) {
+    @BindingAdapter({"image", "transformType", "cornerRadius", "scaleType"})
+    public static <T> void loadImage(ImageView view, T data, @ImageBinding.TransformType int transformType,
+                                     @Px int cornerRadius, @ImageBinding.ScaleType int scaleType) {
+        imageLoader.loadImageLocal(view, data, transformType, scaleType, cornerRadius);
+    }
+
+    @BindingAdapter({"image", "scaleType"})
+    public static <T> void loadImage(ImageView view, T data, @ImageBinding.ScaleType int scaleType) {
+        imageLoader.loadImageLocal(view, data, TRANSFORM_NO_TRANSFORM, scaleType, NO_RADIUS);
+    }
+
+    @BindingAdapter({"image"})
+    public static <T> void loadImage(ImageView view, T data) {
+        imageLoader.loadImageLocal(view, data, TRANSFORM_NO_TRANSFORM, SCALE_AUTO, NO_RADIUS);
+    }
+
+    @BindingAdapter({"image", "cornerType", "cornerRadius"})
+    public static <T> void loadImage(ImageView view, T data, @ImageBinding.TransformType int cornerType,
+                                     @Px int cornerRadius) {
+        imageLoader.loadImageLocal(view, data, cornerType, SCALE_AUTO, cornerRadius);
+    }
+
+    @BindingAdapter({"image", "circle"})
+    public static <T> void loadImage(ImageView view, T data, boolean circle) {
+        imageLoader.loadImageLocal(view, data, circle ? TRANSFORM_CIRCLE : TRANSFORM_NO_TRANSFORM, SCALE_AUTO, NO_RADIUS);
+    }
+
+    @BindingAdapter({"firstUrl", "secondUrl", "twomode", "placeHolder",
+            "transformType", "cornerRadius", "scaleType"})
+    public static void load2Images2Mode(ImageView imageView, String firstUrl, String secondUrl,
+                                        @ImageBinding.TwoMode int twomode, Drawable placeHolder,
+                                        @ImageBinding.TransformType int transformType,
+                                        @Px int cornerRadius, @ImageBinding.ScaleType int scaleType) {
         imageLoader.loadImage(imageView, firstUrl, secondUrl, twomode, placeHolder, transformType,
                 cornerRadius, scaleType);
     }
 
-    @BindingAdapter({"bind:firstUrl", "bind:secondUrl", "bind:twomode", "bind:placeHolder",
-            "bind:transformType", "bind:cornerRadius"})
-    public static void loadImage(ImageView imageView, String firstUrl, String secondUrl,
-                                 @ImageBinding.TwoMode int twomode, Drawable placeHolder,
-                                 @ImageBinding.TransformType int transformType,
-                                 @Px int cornerRadius) {
+    @BindingAdapter({"firstUrl", "secondUrl", "twomode", "placeHolder",
+            "transformType", "cornerRadius"})
+    public static void load2Images2Mode(ImageView imageView, String firstUrl, String secondUrl,
+                                        @ImageBinding.TwoMode int twomode, Drawable placeHolder,
+                                        @ImageBinding.TransformType int transformType,
+                                        @Px int cornerRadius) {
         imageLoader.loadImage(imageView, firstUrl, secondUrl, twomode, placeHolder, transformType,
                 cornerRadius, SCALE_AUTO);
     }
 
-    @BindingAdapter({"bind:firstUrl", "bind:secondUrl", "bind:placeHolder", "bind:scaleType"})
-    public static void loadImage(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder,
-                                 @ImageBinding.ScaleType int scaleType) {
+    @BindingAdapter({"firstUrl", "secondUrl", "twomode"})
+    public static void load2ImagesWith2Mode(ImageView imageView, String firstUrl, String secondUrl,
+                                            @ImageBinding.TwoMode int twomode) {
+        imageLoader.loadImage(imageView, firstUrl, secondUrl, twomode, null, TRANSFORM_NO_TRANSFORM,
+                ImageBinding.NO_RADIUS, SCALE_AUTO);
+    }
+
+    @BindingAdapter({"firstUrl", "secondUrl", "placeHolder", "scaleType"})
+    public static void load2Images(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder,
+                                   @ImageBinding.ScaleType int scaleType) {
         imageLoader.load2Images(imageView, firstUrl, secondUrl, placeHolder, scaleType);
     }
 
-    @BindingAdapter({"bind:firstUrl", "bind:secondUrl", "bind:placeHolder"})
-    public static void loadImage(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder) {
+    @BindingAdapter({"firstUrl", "secondUrl", "placeHolder"})
+    public static void load2Images(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder) {
         imageLoader.load2Images(imageView, firstUrl, secondUrl, placeHolder);
     }
 
-    @BindingAdapter({"bind:firstUrl", "bind:secondUrl", "bind:placeHolder", "bind:circle"})
-    public static void loadImage(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder, boolean circle) {
+    @BindingAdapter({"firstUrl", "secondUrl"})
+    public static void load2Images(ImageView imageView, String firstUrl, String secondUrl) {
+        imageLoader.load2Images(imageView, firstUrl, secondUrl, null);
+    }
+
+    @BindingAdapter({"firstUrl", "secondUrl", "scaleType"})
+    public static void load2ImageWithScaleType(ImageView imageView, String firstUrl,
+                                               String secondUrl, @ImageBinding.ScaleType int scaleType) {
+        imageLoader.load2Images(imageView, firstUrl, secondUrl, null, scaleType);
+    }
+
+    @BindingAdapter({"firstUrl", "secondUrl", "placeHolder", "circle"})
+    public static void load2Images(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder, boolean circle) {
         imageLoader.load2Images(imageView, firstUrl, secondUrl, placeHolder, circle);
     }
 
-    @BindingAdapter({"bind:firstUrl", "bind:secondUrl", "bind:placeHolder", "bind:transformType", "bind:cornerRadius"})
-    public static void loadImage(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder,
-                                 @ImageBinding.TransformType int cornerType, @Px int radius) {
+    @BindingAdapter({"firstUrl", "secondUrl", "placeHolder", "transformType", "cornerRadius"})
+    public static void load2Images(ImageView imageView, String firstUrl, String secondUrl, Drawable placeHolder,
+                                   @ImageBinding.TransformType int cornerType, @Px int radius) {
         imageLoader.load2Images(imageView, firstUrl, secondUrl, placeHolder, cornerType, radius);
     }
 
-    @BindingAdapter({"bind:imageUrl", "bind:placeHolder", "bind:scaleType"})
+    @BindingAdapter({"imageUrl", "placeHolder", "scaleType"})
     public static void loadImage(ImageView imageView, String imageUrl, Drawable placeHolder,
                                  @ImageBinding.ScaleType int scaleType) {
         imageLoader.loadNormal(imageView, imageUrl, placeHolder, scaleType);
     }
 
-    @BindingAdapter({"bind:imageUrl", "bind:placeHolder"})
+    @BindingAdapter({"imageUrl", "placeHolder"})
     public static void loadImage(ImageView imageView, String imageUrl, Drawable placeHolder) {
         imageLoader.loadNormal(imageView, imageUrl, placeHolder);
     }
 
-    @BindingAdapter({"bind:imageUrl", "bind:scaleType"})
+    @BindingAdapter({"imageUrl", "scaleType"})
     public static void loadImage(ImageView imageView, String imageUrl, @ImageBinding.ScaleType int scaleType) {
         imageLoader.loadNormal(imageView, imageUrl, null, scaleType);
     }
 
-    @BindingAdapter({"bind:imageUrl"})
+    @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView imageView, String imageUrl) {
         imageLoader.loadNormal(imageView, imageUrl, null);
     }
 
-    @BindingAdapter({"bind:imageUrl", "bind:circle"})
+    @BindingAdapter({"imageUrl", "circle"})
     public static void loadImage(ImageView imageView, String imageUrl, boolean circle) {
         imageLoader.loadNormal(imageView, imageUrl, null, circle);
     }
 
-    @BindingAdapter({"bind:imageUrl", "bind:placeHolder", "bind:circle"})
+    @BindingAdapter({"imageUrl", "placeHolder", "circle"})
     public static void loadImage(ImageView imageView, String imageUrl, Drawable placeHolder, boolean circle) {
         imageLoader.loadNormal(imageView, imageUrl, placeHolder, circle);
     }
 
-    @BindingAdapter({"bind:imageUrl", "bind:placeHolder", "bind:cornerType", "bind:cornerRadius"})
+    @BindingAdapter({"imageUrl", "placeHolder", "cornerType", "cornerRadius"})
     public static void loadImage(ImageView imageView, String imageUrl, Drawable placeHolder,
                                  @ImageBinding.TransformType int cornerType, @Px int radius) {
         imageLoader.loadNormal(imageView, imageUrl, placeHolder, cornerType, radius);

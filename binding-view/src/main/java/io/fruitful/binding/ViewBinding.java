@@ -8,17 +8,17 @@ import android.view.ViewGroup;
  * Created by hieuxit on 2/3/16.
  */
 public class ViewBinding {
-    @BindingAdapter("bind:visible")
+    @BindingAdapter("visible")
     public static void setVisible(View view, boolean visible) {
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
-    @BindingAdapter("app:enabled")
+    @BindingAdapter("enabled")
     public static void setEnabled(View view, boolean enabled) {
         view.setEnabled(enabled);
     }
 
-    @BindingAdapter({"app:marginLeft", "app:marginTop", "app:marginRight", "app:marginBottom"})
+    @BindingAdapter({"marginLeft", "marginTop", "marginRight", "marginBottom"})
     public static void setMargin(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (lp instanceof ViewGroup.MarginLayoutParams) {
@@ -27,7 +27,7 @@ public class ViewBinding {
         }
     }
 
-    @BindingAdapter("app:marginLeft")
+    @BindingAdapter("marginLeft")
     public static void setMarginLeft(View view, int marginLeft) {
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (lp instanceof ViewGroup.MarginLayoutParams) {
@@ -36,7 +36,7 @@ public class ViewBinding {
         }
     }
 
-    @BindingAdapter("app:marginTop")
+    @BindingAdapter("marginTop")
     public static void setMarginTop(View view, int marginTop) {
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (lp instanceof ViewGroup.MarginLayoutParams) {
@@ -45,7 +45,7 @@ public class ViewBinding {
         }
     }
 
-    @BindingAdapter("app:marginRight")
+    @BindingAdapter("marginRight")
     public static void setMarginRight(View view, int marginRight) {
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (lp instanceof ViewGroup.MarginLayoutParams) {
@@ -54,7 +54,7 @@ public class ViewBinding {
         }
     }
 
-    @BindingAdapter("app:marginBottom")
+    @BindingAdapter("marginBottom")
     public static void setMarginBottom(View view, int marginBottom) {
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (lp instanceof ViewGroup.MarginLayoutParams) {
